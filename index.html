@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Planetfinder</title>
+    <style>
+        .cambox {
+            margin: 4.4% 6.9% 19.2%;
+            overflow: hidden;
+            width: 86.1%;
+            height: 80.7%;
+            background-color: black;
+        }
+
+        /* .screen {
+            width: 100%;
+            height: 80.7%;
+        } */
+
+        .bottombar {
+            display: flex;
+            flex-direction: row;
+            justify-content: space-between;
+            width: 81%;
+            height: 7.9%;
+            position: fixed;
+            bottom: 0px;
+            right: 8.5%;
+            left: 8.5%;
+            background-color: #ffffff;
+        }
+
+
+        body {
+            background-color: #ffffff;
+            width: 100%;
+            height: 100%;
+            margin: 0px 0px;
+        }
+
+        .screen {
+            display: block;
+            margin: auto;
+            position: relative;
+        }
+
+
+        .behindbox {
+            background-image: url(img/backgroundimg.png);
+            background-repeat: no-repeat;
+            background-size: 100% 100%;
+            width: 100%;
+            height: 85.2%;
+            margin-bottom: 3.1%;
+            overflow: hidden;
+
+        }
+
+        .content {
+            width: 100%;
+            height: 100%;
+
+        }
+
+        html {
+            width: 100%;
+            height: 100%;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="content">
+        <div class="behindbox">
+            <div class="cambox">
+                <img class="screen" id="cam" src="http://192.168.0.100:8080/?action=stream" />
+            </div>
+        </div>
+        <div class="bottombar">
+            <img src="img/left.png" id="Left" type="button" onclick="moveL()">
+            <img src="img/zoomout.png" id="zoomoutbutton" type="button" onclick="zoomout()">
+            <img src="img/zoomin.png" id="zoominbutton" type="button" onclick="zoomin()">
+            <img src="img/right.png" id="Right" type="button" onclick="moveR()">
+        </div>
+    </div>
+
+
+    <script>
+       
+        var myImg = document.getElementById("cam");
+        myImg.style.left = 0 + "px";
+
+        function moveL() {
+            var myImg = document.getElementById("cam");
+            // myImg.style.position = relative;
+            myImg.style.left = parseInt(myImg.style.left) - 50 + "px";
+        }
+        function moveR() {
+            var myImg = document.getElementById("cam");
+            parseInt(myImg.style.left)
+            // myImg.style.position = relative;
+            myImg.style.left = parseInt(myImg.style.left) + 50 + "px";
+        }
+
+        var cnt = 0;
+        var defwidth = (document.getElementsByClassName("screen")).clientWidth;
+
+        function zoomin() {
+            var myImg = document.getElementById("cam");
+            var nwidth = myImg.clientWidth;
+            if (nwidth == defwidth) return false;
+            else {
+                myImg.style.width = (nwidth * 1.5) + "px"
+            }
+        }
+        function zoomout() {
+            var myImg = document.getElementById("cam");
+            var nwidth = myImg.clientWidth;
+            if (nwidth == defwidth) return false;
+            else {
+                myImg.style.width = (nwidth * 0.5) + "px"
+            }
+        }
+
+
+    </script>
+</body>
+
+</html>
